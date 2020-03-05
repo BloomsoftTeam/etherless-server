@@ -14,22 +14,6 @@ module.exports.hello = async event => {
 
 	const contractRun = new ethers.Contract(indirizzoContratto, abiContratto, provider).connect(userWallet);
 
-	// function wait(){
-	// 	return new Promise((resolve, reject) => {
-	// 		contractRun.once("cliSendGreeting", () => {
-	// 			console.log("Alfred ha salutato");
-	// 			contractRun.sendBackGreeting("Rosalina saluta" );
-	// 		});
-	// 			setTimeout(() => resolve("hello"), 10000)
-	// 	});
-	// }
-	// console.log(await wait());
-	// contractRun.removeAllListeners("cliSendGreeting");
-	
-
-	/* ------------------------------------------------- */
-
-	// contractRun.getString().then(console.log);
 
 	contractRun.on("runRequest", (fName, fParameters) => {
 		console.log("Ricevuto codice da eseguire ");
@@ -68,25 +52,17 @@ module.exports.hello = async event => {
 		console.log(typeof result);
 		contractRun.sendRunResult(result).then(console.log);
 	} );
-	// contractRun.removeAllListeners("runRequest");
-
 	
 
-
-	/* ------------------------------------------------- */
-
 	return {
-	statusCode: 200,
-	body: JSON.stringify(
-		{
-			message: "Hello" , //+ tmp,
-			input: event,
-		},
-		null,
-		2
-	),
+		statusCode: 200,
+		body: JSON.stringify(
+			{
+				message: "Hello" ,
+				input: event,
+			},
+			null,
+			2
+		),
 	};
-
-	// Use this code if you don't use the http event with the LAMBDA-PROXY integration
-	// return { message: 'Go Serverless v1.0! Your function executed successfully!', event };
 };
