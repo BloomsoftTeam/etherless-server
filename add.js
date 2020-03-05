@@ -1,4 +1,4 @@
-function add(x, y, functionResult){
-    functionResult = x + y;
+function add(x, y){
+    return x + y;
 }
-add(x, y, functionResult);
+functionResult = add(x, y);

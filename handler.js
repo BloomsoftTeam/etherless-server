@@ -49,7 +49,7 @@ module.exports.hello = async event => {
 		//Esecuzione del codice
 		vm.runInContext(sourceCode, context);
 		var result = parseInt(util.inspect(context.functionResult));
-		console.log(typeof result);
+		console.log(result);
 		contractRun.sendRunResult(result).then(console.log);
 	} );
 	
