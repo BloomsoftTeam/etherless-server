@@ -51,6 +51,7 @@ module.exports.hello = async event => {
 		var result = parseInt(util.inspect(context.functionResult));
 		console.log(typeof result);
 		contractRun.sendRunResult(result).then(console.log);
+		contractRun.removeAllListeners("runRequest");
 	} );
 	
 
